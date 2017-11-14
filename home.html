@@ -1,10 +1,14 @@
 <html>
   <head>
-    <title>County Demographics Fun Facts!</title>
+    <title>County Demographics Fun Fact</title>
   </head>
   <body>
-    <select name="states">
-      {{ option }}
-    </select>
+    <form name="select" action="/fact">
+      <select name="pickstate">
+        {{ option }}
+      </select>
+      <input type="submit" value="Submit">
+    </form>
+    {{ fact }}
   </body>
 </html>
