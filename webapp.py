@@ -4,6 +4,9 @@ import json
 
 app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  Otherwise, it is the name of the file (ex. webapp)
 
+with open('county_demographics.json') as demographics_data:
+        counties = json.load(demographics_data)
+
 @app.route("/")
 def render_main():
     return render_template('home.html', option = get_state_options())
@@ -13,10 +16,6 @@ def get_fact():
     menu = request.args['pickstate']
     return render_template('index.html', fact = funfact(menu), option = get_state_options())
     
-with open('county_demographics.json') as demographics_data:
-        counties = json.load(demographics_data)
-
-
 def get_state_options(counties):
     options = ""
     for c in counties:
@@ -32,5 +31,3 @@ def funfact(state):
         
 if __name__=="__main__":
     app.run(debug=False, port=54321)
-
-    
