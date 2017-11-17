@@ -2,7 +2,7 @@ from flask import Flask, request, Markup, render_template, flash, Markup
 import os
 import json
 
-app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  Otherwise, it is the name of the file (ex. webapp)
+app = Flask(__webapp__) #__name__ = "__main__" if this is the file that was run.  Otherwise, it is the name of the file (ex. webapp)
 
 with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
@@ -29,5 +29,5 @@ def funfact(state):
     return fact
         
         
-if __name__=="__main__":
+if __webapp__=="__main__":
     app.run(debug=False, port=54321)
