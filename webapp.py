@@ -27,7 +27,7 @@ def funfact(state):
 def render_main():
     return render_template('home.html', option = get_state_options())
     
-@app.route("/fact", methods=['GET','POST'])
+@app.route("/app", methods=['GET','POST'])
 def get_fact():  
     menu = request.args['pickstate']
     return render_template('index.html', fact = funfact(menu), option = get_state_options())
