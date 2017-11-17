@@ -3,11 +3,10 @@ import os
 import json
 
 app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  Otherwise, it is the name of the file (ex. webapp)
-
-with open('county_demographics.json') as demographics_data:
-        counties = json.load(demographics_data)
-    
+  
 def get_state_options(counties):
+    with open('county_demographics.json') as demographics_data:
+        counties = json.load(demographics_data)
     state = counties[0]["State"]
     pick = ""
     for c in counties:
@@ -17,7 +16,9 @@ def get_state_options(counties):
     return pick
         
 def funfact(state):
-  fact = 0
+    with open('county_demographics.json') as demographics_data:
+        counties = json.load(demographics_data)
+    fact = 0
     for c in counties:
         if state == c["State"]:
             fact += c["Miscellaneous"]["Percent Female"]
