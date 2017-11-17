@@ -29,8 +29,8 @@ def render_main():
     
 @app.route("/app", methods=['GET','POST'])
 def get_fact():  
-    menu = request.args['pickstate']
-    return render_template('index.html', fact = funfact(menu), option = get_state_options())
+    area = request.args['pickstate']
+    return render_template('index.html', fact = funfact(area), option = get_state_options())
         
 if __name__=="__main__":
     app.run(debug=False, port=54321)
