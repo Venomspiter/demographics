@@ -31,7 +31,7 @@ def render_main():
 @app.route("/app", methods=['GET','POST'])
 def get_fact():  
     area = request.args['pickstate']
-    return render_template('index.html', fact = funfact(area), option = get_state_options())
+    return render_template('home.html', fact = funfact(area), option = get_state_options())
         
 if __name__=="__main__":
     app.run(debug=False, port=54321)
