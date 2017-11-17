@@ -2,15 +2,19 @@ from flask import Flask, request, Markup, render_template, flash, Markup
 import os
 import json
 
-app = Flask(__webapp__) #__name__ = "__main__" if this is the file that was run.  Otherwise, it is the name of the file (ex. webapp)
+app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  Otherwise, it is the name of the file (ex. webapp)
 
 with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
     
 def get_state_options(counties):
-    options = ""
+    state = counties[0]["State"]
+    pick = ""
     for c in counties:
-        options += Markup("<option value=\"" + counties["State"] + "\">" + counties["State"] + "</option>")
+        if state != c["State"]:
+            pick += Markup("<option value=" + state +">" + state + "</option>")
+            state = c["State"]
+    return pick
         
 def funfact(state):
   fact = 0
@@ -28,5 +32,5 @@ def get_fact():
     menu = request.args['pickstate']
     return render_template('index.html', fact = funfact(menu), option = get_state_options())
         
-if __webapp__=="__main__":
+if __name__=="__main__":
     app.run(debug=False, port=54321)
